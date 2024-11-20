@@ -1,0 +1,26 @@
+create databse studentdb;
+use studentdb;
+---- Table : used for Student ---
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    course VARCHAR(100) NOT NULL
+);
+
+---- Table : used for Course ---
+CREATE TABLE courses (
+    courseId INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    instructor VARCHAR(100) NOT NULL,
+    credits INT NOT NULL
+);
+
+---- Table : used for enrollment_course ---
+CREATE TABLE enrollment_course (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    course_id INT NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(courseId) ON DELETE CASCADE
+);
